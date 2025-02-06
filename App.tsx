@@ -2,20 +2,37 @@ import {
   StyleSheet,
   Text,
   View,
-  Pressable,
+  Alert,
   TouchableOpacity,
   Button,
 } from "react-native";
 import { theme } from "./theme";
 
 export default function App() {
+  const handleDelete = () => {
+    Alert.alert(
+      "Are you sure you want to delete this?",
+      "It will be gone for good.",
+      [
+        {
+          text: "Yes",
+          onPress: () => console.log("Ok, deleting."),
+          style: "destructive",
+        },
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+      ],
+    );
+  };
   return (
     <View style={styles.container}>
       <Button title="Press Me" />
       <View style={styles.itemContainer}>
         <Text style={styles.itemText}>Coffee</Text>
         <TouchableOpacity
-          onPress={() => console.log("Pressed")}
+          onPress={handleDelete} // () => handleDelete() => a function that has no arg can use that
           activeOpacity={0.8}
           style={styles.button}
         >
