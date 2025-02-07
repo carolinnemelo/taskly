@@ -1,10 +1,14 @@
 import { View, TouchableOpacity, Alert, Text, StyleSheet } from "react-native";
 import { theme } from "../theme";
 
-export function ShoppingListItem() {
+type Props = {
+  name: string;
+};
+
+export function ShoppingListItem({ name }: Props) {
   const handleDelete = () => {
     Alert.alert(
-      "Are you sure you want to delete this?",
+      `Are you sure you want to delete ${name}?`,
       "It will be gone for good.",
       [
         {
@@ -16,12 +20,12 @@ export function ShoppingListItem() {
           text: "Cancel",
           style: "cancel",
         },
-      ]
+      ],
     );
   };
   return (
     <View style={styles.itemContainer}>
-      <Text style={styles.itemText}>Coffee</Text>
+      <Text style={styles.itemText}>{name}</Text>
       <TouchableOpacity
         onPress={handleDelete} // () => handleDelete() => a function that has no arg can use that
         activeOpacity={0.8}
